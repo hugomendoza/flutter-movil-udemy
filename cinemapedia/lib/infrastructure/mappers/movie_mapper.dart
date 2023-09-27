@@ -16,8 +16,9 @@ class MovieMapper {
       popularity: moviedb.popularity,
       posterPath: (moviedb.posterPath != '')
         ? 'https://image.tmdb.org/t/p/w500${moviedb.posterPath}'
-        : 'no-poster',
-      releaseDate: moviedb.releaseDate,
+        : 'https://www.electiondataservices.com/wp-content/uploads/2014/10/sorry-image-not-available.jpg',
+      // releaseDate: moviedb.releaseDate ?? DateTime.now(),
+      releaseDate: moviedb.releaseDate != null ? moviedb.releaseDate! : DateTime.now(),
       title: moviedb.title,
       video: moviedb.video,
       voteAverage: moviedb.voteAverage,
