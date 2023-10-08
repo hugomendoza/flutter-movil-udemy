@@ -1,6 +1,6 @@
 import 'package:cinemapedia/domain/datasources/movies_datasource.dart';
 import 'package:cinemapedia/domain/entities/movie.dart';
-import 'package:cinemapedia/domain/repositories/movies_respositorie.dart';
+import 'package:cinemapedia/domain/repositories/movies_respository.dart';
 
 class MovieRepositoryImpl extends MoviesRepository {
   
