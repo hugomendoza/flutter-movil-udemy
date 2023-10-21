@@ -32,8 +32,6 @@
 /**/.pub/
 /**/build/
 /**/.env
-/**/lib/firebase_options.dart
-/**/**/firebase_options.dart
 
 # Symbolication related
 /**/app.*.symbols
