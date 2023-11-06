@@ -7,10 +7,11 @@ import 'package:teslo_shop/features/shared/shared.dart';
 
 final loginFormProvider = StateNotifierProvider.autoDispose<LoginFormNotifier, LoginFormState>((ref) {
 
-  final loginUserCallBack =  ref.watch(authProvider.notifier).loginUser;
-
+  // final loginUserCallBack =  ref.watch(authProvider.notifier).loginUser;
+  final loginUserCallback = ref.watch(authProvider.notifier).loginUser;
+  
   return LoginFormNotifier(
-    loginUserCallBack: loginUserCallBack
+    loginUserCallback:loginUserCallback
   );
 });
 
@@ -61,10 +62,10 @@ class LoginFormState {
 
 class LoginFormNotifier extends StateNotifier<LoginFormState> {
 
-  final Function(String, String) loginUserCallBack;
+  final Function(String, String) loginUserCallback;
 
   LoginFormNotifier({
-    required this.loginUserCallBack
+    required this.loginUserCallback
   }): super( LoginFormState() );
 
   onEmailChanged(String value) {
@@ -86,7 +87,9 @@ class LoginFormNotifier extends StateNotifier<LoginFormState> {
   onFormSubmit() async {
     _touchedEveryField();
     if( !state.isValid ) return;
-    await loginUserCallBack(state.email.value, state.password.value);
+    state = state.copyWith(isPosting: true);
+    await loginUserCallback(state.email.value, state.password.value);
+    state = state.copyWith(isPosting: false);
   }
 
   _touchedEveryField() {
